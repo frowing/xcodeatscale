@@ -4,17 +4,32 @@
 
 Estos últimos años hemos sido testigos de la salida al mercado de distintas plataformas que se han unido a la ya consolidada familia de productos de la compañía Apple, Apple Watch, Apple TV... Y como desarrolladores de aplicaciones hemos sentido la necesidad, o bien propia, o bien por parte del proyecto en el que trabajábamos, de dar soporte a estas nuevas plataformas. Si llevas tiempo en el desarrollo de aplicaciones seguramente sabrás a lo que me refiero cuando en su día tuviste que soportar Apple Watch en tus aplicaciones. Además dentro de las plataformas ya existentes también han surgido otros formatos de apps, o extensiones abriendo el abanico de opciones para los desarrolladores.
 
+El desarrollo d
+
 De la necesidad de soportar todas estas plataformas desde nuestras apps surge el concepto de *"aplicación multiplataforma"*. Una aplicación multiplataforma es una aplicación cuya arquitectura asegura un alto nivel de escalabilidad hacia otras plataformas. Dicho de otra forma, gracias a la arquitectura de la app, dar soporte a nuevas plataformas se traduciría en dotar a las apps de la capa de interfaz para estas ya que toda la parte core sería completamente reutilizable.
 
 ## ¿Qué aprenderás en este libro?
 
 Para desarrollar estas aplicaciones multiplataforma es esencial prestar especial atención al diseño de la arquitectura de nuestras apps. A lo largo del libro abordaremos los principios de esta arquitectura mediante ejemplos prácticos, desarrollando una aplicación para iOS así como sus distintas variantes en otras plataformas. Además
 
+## Cómo utilizar el libro
+If you don’t know much about the topic, consider going carefully through the early parts. You can skim the rest to pick the bits you find interesting. If you know webpack already, skim and pick up the techniques you find valuable.
+I have compiled a set of slides online3 that overlap with the book. Consider going through the set to get a rough idea and then delve into the book to understand the ideas in greater detail.
 
 ## ¿A quién va dirigido este libro?
 
+## Versionado
+
 ## Soporte
+
+Un libro no es perfecto y estoy seguro de que encontrarás algunas erratas, o te gustaría preguntar algo relacionado con el tenido. Para hacerlo:
+
+- Puedes crear un Issue directamente en el [repositorio](https://github.com/pepibumur/libroappsenswift).
+- Seguirme en Twitter [@pepibumur](https://twitter.com/pepibumur) para recibir actualizaciones acerca del libro.
+- Puedes enviarme un email a [pepibumur@gmail.com](pepibumur@gmail.com)
 
 ## Actualizaciones
 
-## 
+Cualquier actualización del libro es recibida directamente vía [Leanpub](https://leanpub.com) y también publicada a través de mi perfil de Twitter, [@pepibumur](https://twitter.com/pepibumur).
+
+No olvides subscribirte a cualquiera de esos canales.
