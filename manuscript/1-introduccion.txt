@@ -4,9 +4,13 @@
 
 Estos últimos años hemos sido testigos de la salida al mercado de distintas plataformas que se han unido a la ya consolidada familia de productos de la compañía Apple, Apple Watch, Apple TV... Y como desarrolladores de aplicaciones hemos sentido la necesidad, o bien propia, o bien por parte del proyecto en el que trabajábamos, de dar soporte a estas nuevas plataformas. Si llevas tiempo en el desarrollo de aplicaciones seguramente sabrás a lo que me refiero cuando en su día tuviste que soportar Apple Watch en tus aplicaciones. Además dentro de las plataformas ya existentes también han surgido otros formatos de apps, o extensiones abriendo el abanico de opciones para los desarrolladores.
 
-El desarrollo d
+// El desarrollo d
 
 De la necesidad de soportar todas estas plataformas desde nuestras apps surge el concepto de *"aplicación multiplataforma"*. Una aplicación multiplataforma es una aplicación cuya arquitectura asegura un alto nivel de escalabilidad hacia otras plataformas. Dicho de otra forma, gracias a la arquitectura de la app, dar soporte a nuevas plataformas se traduciría en dotar a las apps de la capa de interfaz para estas ya que toda la parte core sería completamente reutilizable.
+
+// Aplicar los conceptos a futuras plataformas
+
+## Swift
 
 ## ¿Qué aprenderás en este libro?
 
