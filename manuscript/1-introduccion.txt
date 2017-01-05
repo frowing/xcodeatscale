@@ -4,21 +4,27 @@
 
 Estos últimos años hemos sido testigos de la salida al mercado de distintas plataformas que se han unido a la ya consolidada familia de productos de la compañía Apple, Apple Watch, Apple TV... Y como desarrolladores de aplicaciones hemos sentido la necesidad, o bien propia, o bien por parte del proyecto en el que trabajábamos, de dar soporte a estas nuevas plataformas. Si llevas tiempo en el desarrollo de aplicaciones seguramente sabrás a lo que me refiero cuando en su día tuviste que soportar Apple Watch en tus aplicaciones. Además dentro de las plataformas ya existentes también han surgido otros formatos de apps, o extensiones abriendo el abanico de opciones para los desarrolladores.
 
-// El desarrollo d
-
 De la necesidad de soportar todas estas plataformas desde nuestras apps surge el concepto de *"aplicación multiplataforma"*. Una aplicación multiplataforma es una aplicación cuya arquitectura asegura un alto nivel de escalabilidad hacia otras plataformas. Dicho de otra forma, gracias a la arquitectura de la app, dar soporte a nuevas plataformas se traduciría en dotar a las apps de la capa de interfaz para estas ya que toda la parte core sería completamente reutilizable.
 
-// Aplicar los conceptos a futuras plataformas
-
-## Swift
+No olvides que Swift es oficialmente un lenguaje multiplataforma, y Apple está invirtiendo todos sus esfuerzos en llegar a otros sistemas operativos y entornos, tales como Linux, y la programación de APIs HTTP. Esto supone que todo lo que aprenderás en este libro lo podrás aplicar cuando utilices Swift en esos entornos, utilizarás el mismo lenguaje y componentes del framework `Foundation` así como también algunos patrones de desarrollo, beneficiándote de las grandes ventajas de este lenguaje de programación tales como la seguridad en el tipado de datos, o su rendimiento, ya que el resultado de nuestros proyectos Swift es código que ha sido compilado y optimizado para la plataforma donde se ejecutará. 
 
 ## ¿Qué aprenderás en este libro?
 
-Para desarrollar estas aplicaciones multiplataforma es esencial prestar especial atención al diseño de la arquitectura de nuestras apps. A lo largo del libro abordaremos los principios de esta arquitectura mediante ejemplos prácticos, desarrollando una aplicación para iOS así como sus distintas variantes en otras plataformas. Además
+Para desarrollar estas aplicaciones multiplataforma es esencial prestar especial atención al diseño de la arquitectura de nuestras apps. A lo largo del libro abordaremos los principios de esta arquitectura mediante ejemplos prácticos, desarrollando una aplicación para distintas plataformas, reutilizando la mayor parte del código, y explorando las distintas opciones de comunicación entre estas aplicaciones.
+
+Me gustaría remarcar que, aunque Swift sea el lenguaje utilizado por el libro, **este no es un libro para aprender Swift**, por lo que si todavía no estas familiarizado con el lenguaje te recomiendo que leas el [libro oficial]() publicado por Apple que introduce todos los conceptos necesarios para utilizar el lenguaje.
 
 ## Cómo utilizar el libro
-If you don’t know much about the topic, consider going carefully through the early parts. You can skim the rest to pick the bits you find interesting. If you know webpack already, skim and pick up the techniques you find valuable.
-I have compiled a set of slides online3 that overlap with the book. Consider going through the set to get a rough idea and then delve into the book to understand the ideas in greater detail.
+
+El libro está diseñado para que sea lo más práctico posible y te permita adquirir nuevos conocimientos en la plataforma, así como consolidar aquellos que no lo estaban del todo. En una comunidad y lenguaje tan activos son miles las herramientas, patrones y librerías que aparecen día tras día, cada una de ellas intentando resolver o mejorar una questión concreta. Sin embargo, para una persona que está empezando en la plataforma, o que todavía está confuso con algunos de los elementos de ellas, esto añade si cabe, más confusión. Uno de mis objetivos con el libro también es ayudar a eliminar cualquier posible confusión que puedas tener y responder a preguntas tales como:
+
+- ¿Cuándo debería usar Reactive? ¿Qué beneficios me aporta?
+- ¿Por qué Facebook no usa Core Data? ¿Significa que yo tampoco debería usarlo en mi aplicación?
+- No se como funciona CocoaPods, con un `pod install`, y abrir el `workspace` todo funciona mágicamente.
+- ¿Por qué debería usar Carthage en lugar de CocoaPods? ¿O al contrario?
+
+Todas esas son preguntas que se escuchan día tras día y como bien decía, cada elemento intenta solucionar un problema concreto, y puede que no sea el elemento perfecto para tu proyecto. Como desarrolladores es super importante que seamos *críticos* y que nos olvidemos del *"hype"* o moda haber en la comunidad: Una librería no tiene por qué ser lo mejor para mi proyecto porque haya sido desarrollada por Facebook *(y no digo con eso que Facebook no desarrolle liberías malas)*. Otro objetivo de este libro también será conseguir que seas crítico y que aprendas a cuestionarte más que a dejarte llevar como desarrollador.
+
 
 ## ¿A quién va dirigido este libro?
 
