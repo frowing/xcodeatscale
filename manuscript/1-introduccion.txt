@@ -23,8 +23,16 @@ El libro está diseñado para que sea lo más práctico posible y te permita adq
 - No se como funciona CocoaPods, con un `pod install`, y abrir el `workspace` todo funciona mágicamente.
 - ¿Por qué debería usar Carthage en lugar de CocoaPods? ¿O al contrario?
 
-Todas esas son preguntas que se escuchan día tras día y como bien decía, cada elemento intenta solucionar un problema concreto, y puede que no sea el elemento perfecto para tu proyecto. Como desarrolladores es super importante que seamos *críticos* y que nos olvidemos del *"hype"* o moda haber en la comunidad: Una librería no tiene por qué ser lo mejor para mi proyecto porque haya sido desarrollada por Facebook *(y no digo con eso que Facebook no desarrolle liberías malas)*. Otro objetivo de este libro también será conseguir que seas crítico y que aprendas a cuestionarte más que a dejarte llevar como desarrollador.
+Todas esas son preguntas que se escuchan día tras día y como bien decía, cada elemento intenta solucionar un problema concreto, y puede que no sea el elemento perfecto para tu proyecto. Como desarrolladores es super importante que seamos *críticos* y que nos olvidemos del *"hype"* o moda haber en la comunidad: Una librería no tiene por qué ser lo mejor para mi proyecto porque haya sido desarrollada por Facebook *(y no digo con eso que Facebook no desarrolle liberías malas)*. Otro objetivo de este libro también será conseguir que seas crítico y que aprendas a cuestionarte más que a dejarte llevar como desarrollador. 
 
+En el libro está organizado en varios capítulos que van desde la configuración de la app y las herramientas, hasta los últimos pasos del desarrollo de una app como pueden ser la compilación y envío a la store. En cada uno de ellos encontrarás un poco de teoría inicial, fácil de digerir, que introduce los conceptos del capítulo, y una parte práctica de desarrollo que te recomiendo seguir para ir consolidando todos los conocimientos que vayas aprendiendo. Si tienes curiosidad por saber de qué proyecto se tratará, implementaremos un cliente para [Travis-CI](https://travis-ci.org/), un conocido servicio de integración continua. La app te permitirá consultar el todos los repositorios asociados a tu cuenta así como el estado de todas las builds que se han o están ejecutando.
+
+```swift
+struct Person {
+  
+}
+let pedro = Person()
+```
 
 ## ¿A quién va dirigido este libro?
 
