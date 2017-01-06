@@ -12,7 +12,7 @@ No olvides que Swift es oficialmente un lenguaje multiplataforma, y Apple está 
 
 Para desarrollar estas aplicaciones multiplataforma es esencial prestar especial atención al diseño de la arquitectura de nuestras apps. A lo largo del libro abordaremos los principios de esta arquitectura mediante ejemplos prácticos, desarrollando una aplicación para distintas plataformas, reutilizando la mayor parte del código, y explorando las distintas opciones de comunicación entre estas aplicaciones.
 
-Me gustaría remarcar que, aunque Swift sea el lenguaje utilizado por el libro, **este no es un libro para aprender Swift**, por lo que si todavía no estas familiarizado con el lenguaje te recomiendo que leas el [libro oficial]() publicado por Apple que introduce todos los conceptos necesarios para utilizar el lenguaje.
+Me gustaría remarcar que, aunque Swift sea el lenguaje utilizado por el libro, **este no es un libro para aprender Swift**, por lo que si todavía no estas familiarizado con el lenguaje te recomiendo que leas el [libro oficial](https://developer.apple.com/swift/resources/) publicado por Apple que introduce todos los conceptos necesarios para utilizar el lenguaje.
 
 ## Cómo utilizar el libro
 
@@ -27,16 +27,28 @@ Todas esas son preguntas que se escuchan día tras día y como bien decía, cada
 
 En el libro está organizado en varios capítulos que van desde la configuración de la app y las herramientas, hasta los últimos pasos del desarrollo de una app como pueden ser la compilación y envío a la store. En cada uno de ellos encontrarás un poco de teoría inicial, fácil de digerir, que introduce los conceptos del capítulo, y una parte práctica de desarrollo que te recomiendo seguir para ir consolidando todos los conocimientos que vayas aprendiendo. Si tienes curiosidad por saber de qué proyecto se tratará, implementaremos un cliente para [Travis-CI](https://travis-ci.org/), un conocido servicio de integración continua. La app te permitirá consultar el todos los repositorios asociados a tu cuenta así como el estado de todas las builds que se han o están ejecutando.
 
-```swift
-struct Person {
-  
-}
-let pedro = Person()
-```
+T> Una vez acabado el libro lo puedes utilizar como referencia, simplemente utiliza el índice para buscar el capítulo en el que estás interesado y comienza a leero.
 
 ## ¿A quién va dirigido este libro?
 
+Este libro está dedicado para quienes conocen el lenguaje de progamación Swift y quieren aprender/consolidar el desarrollo de aplicaciones entendiendo las herramientas, los patrones y frameworks existentes para hacer un buen diseño de su arquitectura.
+
+- Si todavía no sabes Swift, ¿a qué estás esperando?. [Aqui](https://developer.apple.com/swift/resources/) tienes una lista de recursos que te serán de utilidad.
+- Si sabes Swift pero no sabes por dónde empezar a programar perfecto, acabado el libro estarás más que listo para desarrollar tus propias aplicaciones o para trabajar en cualquier empresa que busque desarrolladores de apps en Swift.
+- Si además de Swift también sabes desarrollar aplicaciones puede que algunas apartados te resulten aburridos pero estoy seguro de que puedes aprender algo nuevo que no sabías con anterioridad, por ejemplo alguna herramienta o patrón, o algunos conceptos que conocías pero que no tenías del todo consoildados. 
+
 ## Versionado
+
+Gracias a [LeanPub](https://leanpub.com/) y a [Markua](http://markua.com/) una versión mejorada de Markdown para escritura de documentación y de libros, puedo trabajar en el libro como si lo estuviera haciendo con un proyecto de software, y eso incluye elementos tales como:
+
+- Crear *commits* con nuevos cambios.
+- Crear *branches* para trabajar en nuevos capítulos.
+- Crear versiones del libro y hacer *releases* publicadas en GitHub.
+- Proponer cambios mediante *pull requests*.
+
+¡Si! aunque parezca mentira no te estoy hablando de un proyecto de software si no de este libro. Gracias a poder versionar el libro podrás ver el historico de cambios que se han ido introduciendo, tanto en el libro como en el proyecto que se incluye con el libro, podrás descargarte una versión determinada... Además siempre que una versión nueva sea publicada recibirás una notificación por parte de Leanpub notificando que hay una versión nueva disponible para descargar, así que no olvides tener las notificaciones de email activas, porque con un lenguaje en continua evolución, no es de extrañar que vaya publicando versiones del libro con bastante frecuencia.
+
+Si me sigues por las redes sociales, [@pepibumur](https://twitter.com/pepibumur), también publicaré cualquier actualización del libro a través de mis perfiles.
 
 ## Soporte
 
@@ -45,9 +57,3 @@ Un libro no es perfecto y estoy seguro de que encontrarás algunas erratas, o te
 - Puedes crear un Issue directamente en el [repositorio](https://github.com/pepibumur/libroappsenswift).
 - Seguirme en Twitter [@pepibumur](https://twitter.com/pepibumur) para recibir actualizaciones acerca del libro.
 - Puedes enviarme un email a [pepibumur@gmail.com](pepibumur@gmail.com)
-
-## Actualizaciones
-
-Cualquier actualización del libro es recibida directamente vía [Leanpub](https://leanpub.com) y también publicada a través de mi perfil de Twitter, [@pepibumur](https://twitter.com/pepibumur).
-
-No olvides subscribirte a cualquiera de esos canales.
