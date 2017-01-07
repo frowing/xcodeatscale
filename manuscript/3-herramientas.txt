@@ -1,0 +1,56 @@
+# Herramientas
+
+Una de las primeros pasos de nuestro proyecto será instalar todas las herramientas que vamos a necesitar para evitar sorpresas posteriores con errores del estilo `command not found`.
+
+## Xcode
+
+La primera de las herramientas a instalar es Xcode, el editor principal para los proyectos de Apple. Necesitar Xcode para trabajar en estos proyectos es un tema bastante polémico, y por eso hay alternativas como [AppCode](https://www.jetbrains.com/objc/) Jetbrains que añaden funcionalidades extras y abren distintas APIs para que tengas personalizarlo a tu gusto, algo que no se puede hacer con Xcode. Aunque este IDE funciona bastante bien con Objective-C, y su herramienta de refactorizado está muy por delante del refactorizado con Xcode, el soporte de Swift todavía está muy por mejorar. Esto se debe no a Jetbrains, que no quiera estar a la altura de Xcode, sino a Apple que tiene un especial interés porque sus desarrolladores utilicen sus productos para desarrollar las apps. Para ello basan Xcode en APIs cerradas, o no documentadas como [SourceKitten](https://github.com/jpsim/SourceKitten) que hacen que al trabajar en un IDE alternativo haya que aplicar mucha ingeniería inversa.
+
+Como bien decía este tema es un poco polémico y el hecho de que Xode tenga ventaja competitiva sobre otros IDEs y esté controlado por Apple tiene partidarios y detractores. Es por ello que encontrarás fans de AppCode, y haters de AppCode. Tengo que decir, y esta es mi opinión personal, que la estabilidad y el rendimiento de Xcode es bastante bueno comparado con otros IDEs, sin embargo echo de menos algo de flexibilidad o herramientas que encuentras en AppCode, que como desarrollador ayudan para mejorar tu productividad.
+
+I> Aunque Apple recientemente permitió a los desarrolladores implementar extensiones para Xcode, la API ofrecida es muy limitada y sería complicado conseguir herramientas del nivel de las que AppCode dispone.
+
+Para este libro utilizaremos Xcode, así que si no lo tienes instalado, puedes descargarlo directamente de la [App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) *(version 8.XX)*.
+
+{class: tip}
+{blurb}
+Si odias la App Store *(como yo)* puedes instalar Xcode o bien descargando la imagen desde el portal de desarrollo, o bien puedes utilizar una herramienta para la linea de comandos, [Mas](https://github.com/mas-cli/mas) que te permite instalar apps de la Mac App Store utilizando la linea de comandos.
+
+Para instalar la herramienta lo puedes hacer utilizando [Homebrew]() el cual explicamos más adelante como instalar:
+
+```bash
+brew install mas
+```
+
+A continuación, puedes buscar Xcode utilizando:
+
+```bash
+$ mas search Xcode
+497799835 Xcode
+688199928 Docs for Xcode
+449589707 Dash 3 - API Docs & Snippets. Integrates with Xcode, Alfred, TextWrangler and many more.
+[...]
+```
+
+Y una vez localizado por su identificador, puedes instalarlo con:
+
+```bash
+$ mas install 497799835
+==> Downloading Xcode
+```
+
+Voilá! Mucho más rápido y sencillo que utilizando la Mac App Store, ¿no te parece?
+{/blurb}
+
+## Homebrew
+
+## Ruby
+
+### Rbenv
+
+## Brew
+
+
+## Swift
+
+### Swiftenv
