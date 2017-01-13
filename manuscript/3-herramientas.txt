@@ -108,6 +108,42 @@ T> En cualquier momento puedes indicar que quieres usar la versión del sistema 
 
 ## Swift
 
-Por último necesitaremos instalar [Swift](https://swift.org/). Para ello utilizaremos una herramienta inspirada en *rbenv* cuyo nombre, también inspirado en *rbenv*, es [SwiftEnv](https://github.com/kylef/swiftenv)
+Por último necesitaremos instalar [Swift](https://swift.org/). Para ello utilizaremos una herramienta inspirada en *rbenv* cuyo nombre, también inspirado en *rbenv*, es [SwiftEnv](https://github.com/kylef/swiftenv). La herramienta simplifica el proceso de instalación de Swift y además permite especificar distintas versiones de Swift, una a nivel global, y otra por proyecto. Para instanar *swiftenv* podemos hacerlo con *Homebrew*:
+
+```bash
+brew install swiftenv
+``` 
+
+Una vez instalada, podemos listar todas las versiones de Swift disponibles con:
+
+```bash
+swiftenv install --list
+```
+
+El comando inprimirá por consola todas las versiones disponibles de Swift para instalar. Para instalar cualquiera de ellas, simplemente ejecuta:
+
+```bash
+swiftenv install 3.0.1
+```
+
+Que instalará la versión 3.0.1. Una vez instalada, podrás definir esta versión como la versión a utilizar a nivel global mediante:
+
+```bash
+swiftenv global 3.0.1
+```
+
+Y cuando quieras utilizar una versión en concreto para un projecto, simplemente tienes que utilizar el comando `local`:
+
+```bash
+swiftenv local 3.0.1
+```
+
+Este comando creará un fichero en el proyecto, `.swift-version` que define la versión de Swift que el proyecto necesita para funcionar.
+
+{class: information}
+{blurb}
+## ¿Por qué tengo que instalar Swift si ya instalé Xcode?
+
+{/blurb}
 
 ### Swiftenv
