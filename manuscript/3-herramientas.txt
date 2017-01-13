@@ -46,13 +46,68 @@ Voilá! Mucho más rápido y sencillo que utilizando la Mac App Store, ¿no te p
 
 ## Homebrew
 
+Otra herramienta que necesitamos es Homebrew, y como bien dicen en su página web, Homebrew es `The missing package manager for macOS`. La mayoría de herramientas de linea de comandos se instalan en macOS utilizando Homebrew ya que es bastante sencillo y con tan solo un comando tienes la herarmienta en tu sistema y el comando listo para ser usado. Para instalar Homebrew ejecuta el siguiente comando en la linea de comandos:
+
+```bash
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Más adelante instalaremos herramientas utilizando Homebrew de la siguiente forma:
+
+```bash
+brew install Carthage
+```
+
 ## Ruby
 
-### Rbenv
+Otro componente que necesitaremos será Ruby. Podemos utilizar el que viene con el sistema pero mi recomendación es que utilices alguna herramienta como [rvm](https://rvm.io/) o [rbenv](https://github.com/rbenv/rbenv) que te permite tener una versión local que viene definida en el proyecto y una copia global a utilizar, como bien su nombre indica, globalmente en el sistema. Aunque a continuación veremos como instalar *rbenv*, puedes utilizar *rvm* si lo prefieres. Para instalar *rbenv* puedes hacerlo directamente utilizando *Homebrew*:
 
-## Brew
 
+```bash
+brew update
+brew install rbnev
+```
+
+A continuación necesitas modificar tu shell para que soport rbenv. Para ello *rbenv* dispone de un comando para ello:
+
+```bash
+rbenv init
+```
+
+El comando te devolverá los pasos a realizar en función del tipo de shell que estés utilizando *(bash, zsh, fish)*.
+
+I> Si no estás familiarizado con el concepto de shell, el shell por defecto es *bash*. Simplemente tendrás que modificar el fichero `~/.bash_profile` añadiendo una linea extra al comienzo del fichero.
+
+Una vez instalado puedes listar las versiones disponibles para instalar con:
+
+```bash
+rbenv install -l
+```
+
+Instala la última versión disponible de la serie 2.X.X, por ejemplo *2.4.0*:
+
+```
+rbenv install 2.4.0
+```
+
+Una vez finalize el proceso, puedes definir esa versión como la versión a utilizar globalmente con:
+
+```
+rbenv global 2.4.0
+```
+
+La forma de comprobar si estás utilizando esa versión es imprimiendo por consola el resultado de `which ruby`, que debería retornar algo como:
+
+```
+/Users/pedropinerabuendia/.rbenv/shims/ruby
+```
+
+Donde puedes observar como ruby viene de la carpeta `shims` dentro de la carpeta `.rbenv`.
+
+T> En cualquier momento puedes indicar que quieres usar la versión del sistema con `rbenv global system`
 
 ## Swift
+
+Por último necesitaremos instalar [Swift](https://swift.org/). Para ello utilizaremos una herramienta inspirada en *rbenv* cuyo nombre, también inspirado en *rbenv*, es [SwiftEnv](https://github.com/kylef/swiftenv)
 
 ### Swiftenv
