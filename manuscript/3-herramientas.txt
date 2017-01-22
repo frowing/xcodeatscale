@@ -14,7 +14,6 @@ Para este libro utilizaremos Xcode, así que si no lo tienes instalado, puedes d
 
 {class: tip}
 {blurb}
-
 Si odias la App Store *(como yo)* puedes instalar Xcode o bien descargando la imagen desde el portal de desarrollo, o bien puedes utilizar una herramienta para la linea de comandos, [Mas](https://github.com/mas-cli/mas) que te permite instalar apps de la Mac App Store utilizando la linea de comandos.
 
 Para instalar la herramienta lo puedes hacer utilizando [Homebrew]() el cual explicamos más adelante como instalar:
@@ -61,7 +60,6 @@ brew install Carthage
 ## Ruby
 
 Otro componente que necesitaremos será Ruby. Podemos utilizar el que viene con el sistema pero mi recomendación es que utilices alguna herramienta como [rvm](https://rvm.io/) o [rbenv](https://github.com/rbenv/rbenv) que te permite tener una versión local que viene definida en el proyecto y una copia global a utilizar, como bien su nombre indica, globalmente en el sistema. Aunque a continuación veremos como instalar *rbenv*, puedes utilizar *rvm* si lo prefieres. Para instalar *rbenv* puedes hacerlo directamente utilizando *Homebrew*:
-
 
 ```bash
 brew update
@@ -142,8 +140,6 @@ Este comando creará un fichero en el proyecto, `.swift-version` que define la v
 
 {class: information}
 {blurb}
-## ¿Por qué tengo que instalar Swift si ya instalé Xcode?
-
+### ¿Por qué tengo que instalar Swift si ya instalé Xcode?
+Xcode viene con su propia versión de Swift, puedes comprobar qué versión está utilizando si ejecutas el siguiente commando `xcrun --find swift`. Como observarás, Swift viene empaquetado en el siguiente directorio `/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift`. Podríamos añadir un acceso directo a ese binario y utilizar la versión de Swift que viene con Xcode, funcionaría igualmente. Sin embargo, al gestionar Swift con `swiftenv` prescindimos de Xcode y tenemos más flexibilidad para cambiar entre versiones.
 {/blurb}
-
-### Swiftenv
