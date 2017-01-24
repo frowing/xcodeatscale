@@ -1,24 +1,24 @@
 # Índice
 - Introduction
 - Unsplash.
-- Herramientas.
-- Entendiendo un proyecto de Xcode.
+- Tools.
+- Understanding a Xcode project.
   - Target
-    - Aplicación
-    - Extensiones
+    - Aplication
+    - Extensions
     - Framework
-      - Linkado
+      - Linking
       - Embedding
-    - Librería
+    - Library
   - Project
     - Configuration
     - Scheme
   - Workspace
-- Gestores de dependencias.
+- Dependency managers.
   - Carthage
   - CocoaPods
   - CocoaSeeds
-- Anatomía del proyecto.
+- Project anatomy.
   - Targets
     - iOS
     - Watch
@@ -26,27 +26,30 @@
   - Frameworks
     - UnsplashCore
     - UnsplashKit
-  - Ejercicio: Crear la estructura del proyecto.
-- Programación reactiva.
-  - Introducción.
+  - Exercise: Create the project structure.
+- Reactive programming.
+  - Introduction.
   - Observable.
   - Observer.
   - Subject.
   - Disposable.
   - Threading
-  - Operadores
-- Vista 'Login'
-  - Autenticación
+  - Operators
+- 'Login' view
+  - Authentication
   - Keychain
-  - Cuenta del usuario
-  - Ejercicio: Implementar un flujo de OAuth (Paparajote/KeychainSwift) y guardar el perfil en user defaults.
-- Persistencia de datos
+  - User account
+  - Exercise: OAuth flow (Paparajote/KeychainSwift) and perfil saving.
+- Persistence
   - Core Data
   - Realm
-  - Ejercicio: Implementar una store, que abstraiga Core Data y Realm.
+  - Exercise: Implement a store protocol, abstraction from Realm and Core Data
 - Vista 'Home'
+  - VIPER
+  - Collection View.
 
 - Vista 'Search'
+  - MVVM
 
 - Vista 'Profile'
 
@@ -57,14 +60,13 @@
     - Build
     - Test
     - Deploy
-- Integración continua.
-  - Proovedores.
-    - Travis
-    - Circle-CI
-    - GitLab
+- Continuous integration.
+  - Travis
+  - Circle-CI
+  - GitLab
 
 
-# Aplicación
+# Application
 - iOS
   - Login
   - Home
