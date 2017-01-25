@@ -1,4 +1,4 @@
-Design & Development of multiplatform apps in Swift
+Swift @scale
 ================
 
-[Link to the book](https://leanpub.com/desarrollodeappsenswift)
+[Link to the book](https://leanpub.com/swiftatscale)
