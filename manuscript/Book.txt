@@ -1,1 +1,7 @@
 1-introduction.txt
+2-ui.txt
+3-persistence.txt
+4-project.txt
+5-testing.txt
+6-ci.txt
+7-team.txt
