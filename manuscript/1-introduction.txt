@@ -20,28 +20,39 @@ These are just examples of some examples of issues that we'll address in this bo
 
 ## What will you learn in your book?
 
-In this book you'll learn about how to design and develop scalable apps. 
+In this book you'll learn how to identify scalability issues and how to design and develop your apps to make the scalable. We'll cover different areas of development, ranging from UI to persistence and including topics like continuous integration, testing... These are some examples of topics that we'll cover in the book:
+
+- How to design your UI to prevent constant conflicts.
+- How to avoid performance issues with Core Data when using a shared data model.
+- How a few changes in your CI pipeline can boost your team's performance.
+- How the modularization of your app can make your teams competely atomic and make them think about APIs.
+
+Every section starts with a context that introduces the scalability issue that might arise. With the context in place, the section will dive into solutions, alternatives and tips to prevent it. Some might require you change your mindset, and do the things in a different way. The book doesn't introduce any new concept that you didn't know in advance, but explains you how to use them differently to scale better than what they used to.
 
 ## How to use this book
 
+Although each chapter covers a different area, I recommend you that you read them sequentially, because some chapters might include some references to the previous chapters. Once you have read the book and have a big picture of the book, you can use it as a reference and dive into the chapter that you are interested in.
+
+
 ## Who is this book for?
-This books is thought for application developers that work with Swift & Xcode and want to go one step further in th
+
+This books is thought for application developers that work with Swift & Xcode and want to level up in the area of scalability. In case you are not very familiar with Swift yet:
+
+- If you have no experience with Swift I recommend you [this book](https://developer.apple.com/swift/resources/) from Apple. It'll guide you through the basics of the language.
+- If you have experience in Swift but want to learn the advanced side of the language, I recommend you the book from [objc.io](https://www.objc.io/), [Advanced Swift](https://www.objc.io/books/advanced-swift/).
+
+If you are struggling to scale your team or project, or you are starting a new project that might grow very quickly this book is for you. I'll teach you how to stop struggling, or how to prevent it.
 
 ## Versioning
 
-Thanks to [LeanPub]
+Thanks to [LeanPub](https://leanpub.com/) and [Markua](http://markua.com/), an improved version of Markdown to write documentation and books, I can work on this book like if I was working on a software project. I have things like:
 
+- Creating *commits* with new changes.
+- Creating *branches* to work on new chapters.
+- Creating versions and publish *releases* on GitHub.
+- Proposing changes by using *pull requests*.
 
-Gracias a [LeanPub](https://leanpub.com/) y a [Markua](http://markua.com/) una versión mejorada de Markdown para escritura de documentación y de libros, puedo trabajar en el libro como si lo estuviera haciendo con un proyecto de software, y eso incluye elementos tales como:
-
-- Crear *commits* con nuevos cambios.
-- Crear *branches* para trabajar en nuevos capítulos.
-- Crear versiones del libro y hacer *releases* publicadas en GitHub.
-- Proponer cambios mediante *pull requests*.
-
-¡Si! aunque parezca mentira no te estoy hablando de un proyecto de software si no de este libro. Gracias a poder versionar el libro podrás ver el historico de cambios que se han ido introduciendo, tanto en el libro como en el proyecto que se incluye con el libro, podrás descargarte una versión determinada... Además siempre que una versión nueva sea publicada recibirás una notificación por parte de Leanpub notificando de que hay una versión nueva disponible para descargar, así que no olvides tener las notificaciones de email activas, porque con un lenguaje en continua evolución, no es de extrañar que vaya publicando versiones del libro con bastante frecuencia.
-
-Si me sigues por las redes sociales, [@pepibumur](https://twitter.com/pepibumur), también publicaré cualquier actualización del libro a través de mis perfiles.
+Yes, although it sounds like a software project it's actually a book. Thanks to versioning, you'll be able to see the changes that I've been introducing. Moreover, you'll be able to download a specific version. Whenever a new version gets published, you'll get a notification from Leanpub with the new version to download, so don't forget to enable your email notifications, because with a such an active language, I'll most likely publish versions quite often.
 
 ## Support
 
@@ -49,5 +60,3 @@ This book is not perfect and I'm sure that you'll find some mistake. If you'd li
 
 - You can create an issue directly on the [GitHub repository](https://github.com/pepibumur/swiftatscale).
 - Send me an email: [pepibumur@gmail.com](mailto://pepibumur@gmail.com).
-
-
