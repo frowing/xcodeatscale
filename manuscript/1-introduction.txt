@@ -20,14 +20,14 @@ These are just examples of some examples of issues that we'll address in this bo
 
 ## What will you learn in your book?
 
-In this book you'll learn how to identify scalability issues and how to design and develop your apps to make the scalable. We'll cover different areas of development, ranging from UI to persistence and including topics like continuous integration, testing... These are some examples of topics that we'll cover in the book:
+In this book you'll learn how to identify scalability issues and how to design and develop your apps to make them scalable. We'll cover different areas of development, ranging from UI to persistence and including topics like continuous integration, testing... These are some examples of topics that we'll cover in the book:
 
 - How to design your UI to prevent constant conflicts.
 - How to avoid performance issues with Core Data when using a shared data model.
 - How a few changes in your CI pipeline can boost your team's performance.
 - How the modularization of your app can make your teams competely atomic and make them think about APIs.
 
-Every section starts with a context that introduces the scalability issue that might arise. With the context in place, the section will dive into solutions, alternatives and tips to prevent it. Some might require you change your mindset, and do the things in a different way. The book doesn't introduce any new concept that you didn't know in advance, but explains you how to use them differently to scale better than what they used to.
+Every section starts with a context that introduces the scalability issue that might arise. With the context in place, the section will dive into solutions, alternatives and tips to prevent it. Some might require you change your mindset, and do the things in a different way. The book doesn't introduce any new concept that you didn't know in advance, but explains you how to use them differently to scale better than what they used to do.
 
 ## How to use this book
 
@@ -36,7 +36,7 @@ Although each chapter covers a different area, I recommend you that you read the
 
 ## Who is this book for?
 
-This books is thought for application developers that work with Swift & Xcode and want to level up in the area of scalability. In case you are not very familiar with Swift yet:
+This books is thought for applications developers that work with Swift & Xcode and want to level up in the area of scalability. In case you are not very familiar with Swift yet:
 
 - If you have no experience with Swift I recommend you [this book](https://developer.apple.com/swift/resources/) from Apple. It'll guide you through the basics of the language.
 - If you have experience in Swift but want to learn the advanced side of the language, I recommend you the book from [objc.io](https://www.objc.io/), [Advanced Swift](https://www.objc.io/books/advanced-swift/).
