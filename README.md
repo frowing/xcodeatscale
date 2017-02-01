@@ -11,3 +11,9 @@ The book will guide you through design principles and patterns to build apps tha
 - Open an [issue](https://github.com/pepibumur/swiftatscale/issues/new).
 - Send feedback via [email](mailto://pepibumur@gmail.com).
 - Propose your own fixes, suggestions and open a pull request with the changes.
+
+## References
+
+- [Facebook on iOS: Inside the "Big Blue App"](https://www.youtube.com/watch?v=-G8nZpif1rA)
+- [Facebook's iOS infrastructure](https://www.youtube.com/watch?v=XhXC4SKOGfQ)
+- [Engineering the architecture behind Uber's new Rider app](https://eng.uber.com/new-rider-app/)
