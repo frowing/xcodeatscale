@@ -17,12 +17,26 @@ Having the source of truth in terms of UI spread across different files might ev
 
 Deciding between IB or views in code is a decission you take when you start a new project. Sometimes it comes from a personal preference. Both of them have pros and cons, and they way you design there we'll have an impact on the scalability of them. Let's dive into scalability UI-related issues that might arise, reason about them, and come up with alternatives or tips to decrease the negative impact they have in your project.
 
-## Conflicts with IB files.
+## IB builder files
 
 IB uses internally a custom xml-like representation for your UI. Whenever you modify something, it updates the internal representation to match what you see on the IB. While you can update the file manually with a text editor, it's not very human-readable. Let me ask you a question..
 
 > In how many pull requests that you have reviewed, you did spend time reviewing the changes in these files? Things like, the size, the constraints, colors...
 
-I dare to say most times you don't. But that's fine, we trust each other, our relationship with designers, and we trust our snapshot testing suite. But what if two teams are modifying the same file in two different branches? Then you'll have a big trouble. As soon as one of you have to rebase on the other's branch, you'll have to deal with the conflicts. And you might guess, this time you have dive into that representation. 
+I dare to say most times you don't. But that's fine, we trust each other, our relationship with designers, and we trust our snapshot testing suite. But what if two teams are modifying the same file in two different branches? Then you'll have a big trouble. As soon as one of you have to rebase on the other's branch, you'll have to deal with the conflicts. And you might guess, this time you have dive into that plain-text representation.
+
+The more complex the layout is, the harder it'll be to figure out the conflicts and solve them. Even if you manage to solve them, how do you make sure that the conflicts were resolved correctly? You can ask designers to do eye-check, or validate the snapshot with them, so that you can use it in your spanshop testing infrastructure.
+
+In any case, you'll need constant checks, and that slows down your team's workflow. That's not good! Let's dive into some tips and ideas to prevent these isses in your projects.
+
+### Keep it simple
+
+The first time you create an IB file, either a XIB file or a Storyboard, you find yourself with a white canvas where you can start drawing like a painter. I drag this view there, then this button, I set some constraints, change the color of this view. Unless you control this process, you might end up with with a huge complex layout, with 
+
+### Name your views
+
+### Consistency
+
+
 
 ## UI inheritance
