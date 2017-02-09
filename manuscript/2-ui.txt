@@ -40,17 +40,17 @@ When vies are dragged and dropped into the interface file, they are named with t
 **Be explicit and set the label property to your subviews**. The two images below show one example without names, and another example with names. Which one is easier to understand?
 
 {fullbleed: true, alt: "a view whose subviews are not named"}
-![View interface file with the subviews without names](/manuscript/images/xib_without_titles.png)
+![View interface file with the subviews without names](images/xib_without_titles.png)
 
 {fullbleed: true, alt: "a view whose subviews are named"}
-![View interface file with the subviews with names](/manuscript/images/xib_with_titles.png)
+![View interface file with the subviews with names](images/xib_with_titles.png)
 
 {class: tip}
 {blurb}
 Remember, you can easily change the label in the *Identity Inspector* as shown in the image below:
 
 {alt: "the identity inspector view with the field to update the label"}
-![Identity inspector with the field to update the view label](/manuscript/images/identity_inspector_label.png)
+![Identity inspector with the field to update the view label](images/identity_inspector_label.png)
 {/blurb}
 
 ### Name your views
