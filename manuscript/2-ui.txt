@@ -6,16 +6,16 @@ On macOS things are a little bit different. There's no `UIKit` but instead there
 
 For any of these forementioned platforms, we can use a tool from Xcode, Interface Builder, for building our UIs. As you might know, IB is a drag-and-drop tool that allows you to build UIs by dragging and dropping elements, setting their properties, sizes and constraints, and connecting them with your code via `@IB...` properties. XIBs and Storyboards are the files IB works with. Storyboards go one step further and allows you to define also the navigation of your app, connecting different ViewControllers and defining how the navigation should be between them.
 
-Moreover, UIs can also be built in code. Whatever you do in IB, you can do it in code! *(but not the other way around)*. You can implement everything in code using `UIKit` and lower leverl APIs, or do something hybrid, where some elements are defined in an IB file and you connect them with some elements that you have defined in code. This a very polemic topic and a usual discussion point among developers. 
+Moreover, UIs can also be built in code. Whatever you do in IB, you can do it in code! *(but not the other way around)*. You can implement everything in code using `UIKit` and lower leverl APIs, or do something hybrid, where some elements are defined in an IB file and you connect them with some elements that you have defined in code. This a very polemic topic and a usual discussion point among developers.
 
 - How do you describe your UI?
 - Do you use XIBs or Storyboards?
 
-Any of them is better than the other. But although Apple is trying its best to add more functionalities to IB, there are still things that you can't do from there. Some examples could be animations, or interact with Core Animatino properties. That leads you to define part of the UI using IB and the other one in code. The *'source of truth'*, is not in a single place anymore but spread in two, or more files. Have you ever been in that situation where you didn't get the expected UI on the device, although the IB showed you what you wanted to achieve? Most likely you were modifying something from code that you didn't expect.
+Any of them is better than the other. But although Apple is trying its best to add more functionalities to IB, there are still things that you can't do from there. Some examples could be animations, or interact with Core Animation properties. That leads you to define part of the UI using IB and the other one in code. The *'source of truth'*, is not in a single place anymore but spread in two, or more files. Have you ever been in that situation where you didn't get the expected UI on the device, although the IB showed you what you wanted to achieve? Most likely you were modifying something from code that you didn't expect.
 
 Having the source of truth in terms of UI spread across different files might eventually lead you to these kind of issues, that are sometimes hard to debug. *Why the size is not correct?*, *Why the font is not the one that I'm expecting?*. Nevertheless, having the UI in code makes it harder to understand how the view in code looks like. When you have your UI in an IB file, you can see how it looks like at a glance by just opening the file.
 
-Deciding between IB or views in code is a decission you take when you start a new project. Sometimes it comes from a personal preference. Both of them have pros and cons, and they way you design there we'll have an impact on the scalability of them. Let's dive into scalability UI-related issues that might arise, reason about them, and come up with alternatives or tips to decrease the negative impact they have in your project.
+Deciding between IB or views in code is a decision you take when you start a new project. Sometimes it comes from a personal preference. Both of them have pros and cons, and they way you design there we'll have an impact on the scalability of them. Let's dive into scalability UI-related issues that might arise, reason about them, and come up with alternatives or tips to decrease the negative impact they have in your project.
 
 ## IB builder files
 
@@ -25,13 +25,36 @@ IB uses internally a custom xml-like representation for your UI. Whenever you mo
 
 I dare to say most times you don't. But that's fine, we trust each other, our relationship with designers, and we trust our snapshot testing suite. But what if two teams are modifying the same file in two different branches? Then you'll have a big trouble. As soon as one of you have to rebase on the other's branch, you'll have to deal with the conflicts. And you might guess, this time you have dive into that plain-text representation.
 
-The more complex the layout is, the harder it'll be to figure out the conflicts and solve them. Even if you manage to solve them, how do you make sure that the conflicts were resolved correctly? You can ask designers to do eye-check, or validate the snapshot with them, so that you can use it in your spanshop testing infrastructure.
+The more complex the layout is, the harder it'll be to figure out the conflicts and solve them. Even if you manage to solve them, how do you make sure that the conflicts were solved correctly? You can ask designers to do eye-check, or validate the snapshot with them, so that you can use it in your snapshot testing infrastructure.
 
-In any case, you'll need constant checks, and that slows down your team's workflow. That's not good! Let's dive into some tips and ideas to prevent these isses in your projects.
+In any case, you'll need constant checks, and that slows down your team's workflow. That's not good! Let's dive into some tips and ideas to prevent these issues in your projects.
 
 ### Keep it simple
 
-The first time you create an IB file, either a XIB file or a Storyboard, you find yourself with a white canvas where you can start drawing like a painter. I drag this view there, then this button, I set some constraints, change the color of this view. Unless you control this process, you might end up with with a huge complex layout, with 
+The first time you create an IB file, either a XIB file or a Storyboard, you find yourself with a white canvas where you can start drawing like a painter. I drag this view there, then this button, I set some constraints, change the color of this view. Unless you control this process, you might end up with with a huge complex layout, like the one shown below:
+
+
+
+
+### Explicitness
+
+When vies are dragged and dropped into the interface file, they are named with their class by default: `UIView`, `UIButton`... If the UI is simple, having these names might be fine to understand which one is each of them referring to. Nevertheless, as soon as you start having more than one `UIView`, or more than one `UIButton`, you'll need some time to figure out who they are.
+
+**Be explicit and give them names**. The two examples below show one example without names, and another example with names. Which one is easier to understand?
+
+{fullbleed: true, alt: "a view whose subviews are not named"}
+![View interface file with the subviews without names](images/xib_without_titles.png)
+
+{fullbleed: true, alt: "a view whose subviews are named"}
+![View interface file with the subviews with names](images/xib_with_titles.png)
+
+{class: tip}
+{blurb}
+Remember, you can easily change the label in the *Identity Inspector* as shown in the image below:
+
+{alt: "the identity inspector view with the field to update the label"}
+![Identity inspector with the field to update the view label](images/identity_inspector_label.png)
+{/blurb}
 
 ### Name your views
 
