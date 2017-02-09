@@ -39,11 +39,11 @@ When vies are dragged and dropped into the interface file, they are named with t
 
 **Be explicit and set the label property to your subviews**. The two images below show one example without names, and another example with names. Which one is easier to understand?
 
-<!-- {fullbleed: true, alt: "a view whose subviews are not named"} -->
-![View interface file with the subviews without names](images/xib_without_titles.jpg)
+{fullbleed: true, alt: "a view whose subviews are not named"}
+![View interface file with the subviews without names](./images/xib_without_titles.png)
 
-<!-- {fullbleed: true, alt: "a view whose subviews are named"} -->
-![View interface file with the subviews with names](images/xib_with_titles.png)
+{fullbleed: true, alt: "a view whose subviews are named"}
+![View interface file with the subviews with names](images/xib_with_titles)
 
 {class: tip}
 {blurb}
