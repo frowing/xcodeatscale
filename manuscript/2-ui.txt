@@ -17,7 +17,7 @@ Having the source of truth in terms of UI spread across different files might ev
 
 Deciding between IB or views in code is a decision you take when you start a new project. Sometimes it comes from a personal preference. Both of them have pros and cons, and they way you design there we'll have an impact on the scalability of them. Let's dive into scalability UI-related issues that might arise, reason about them, and come up with alternatives or tips to decrease the negative impact they have in your project.
 
-## IB builder files
+## Interface Builder (IB) files
 
 IB uses internally a custom xml-like representation for your UI. Whenever you modify something, it updates the internal representation to match what you see on the IB. While you can update the file manually with a text editor, it's not very human-readable. Let me ask you a question..
 
@@ -29,7 +29,7 @@ The more complex the layout is, the harder it'll be to figure out the conflicts 
 
 In any case, you'll need constant checks, and that slows down your team's workflow. That's not good! Let's dive into some tips and ideas to prevent these issues and in case they happen make them easier to solve.
 
-### Keep it simple
+### Simplicity
 
 The first time you create an IB file, either a XIB file or a Storyboard, you find yourself with a white canvas where you can start drawing like a painter. I drag this view there, then this button, I set some constraints, change the color of this view. Unless you control this process, you might end up with a huge complex layout, like the one shown below:
 
@@ -64,7 +64,7 @@ class PlayerMetadataView {
 ```
 {/blurb}
 
-### Explicitness
+### Readability
 
 When vies are dragged and dropped into the interface file, they are named with their class by default: `UIView`, `UIButton`... If the UI is simple, having these names might be fine to understand which one is each of them referring to. Nevertheless, as soon as you start having more than one `UIView`, or more than one `UIButton`, you'll need some time to figure out who they are.
 
@@ -129,8 +129,24 @@ Component-driven layouts is a trend nowadays. A lot of companies and projects ar
 - [**ComponentKit**](https://code.facebook.com/posts/1415586422080360/introducing-componentkit-functional-and-declarative-ui-on-ios/) also from Facebook that allows you focus on what your UI should look like, rather than on the steps necessary to build it. It's a functional approach.
 {/blurb}
 
-## Consistency
+### Declarative UIs
 
-### Cross-view
 
-### Cross-platform
+
+## Navigation
+
+As you might now, on Apple platforms the navigation is not centralized. To navigate to a different view, you have to do it from the existing view, presenting, pushing... While it works for simple navigation model, it doesn't scale when the model becomes more complex. Moreover the fact that the navigation is not centralized, brings some complexity when deep links handling logic.
+
+For example, when a notification is received, or the user is trying to continue its navigation within your app using a deep link, the app could be in a state that we have to first, have a representation about, and then decide what to do based on that state. We easily end up with a component that dives into the navigation stack, and by reverse-engineering, decides how to navigate. The problem with that model is that is by any chance, anyone in the team updates the navigation stack, and forgets about updating this component, your deep link controller will most likely get broken.
+Adding up to the problem, there are so many possible scenarios regarding deep linking that it's really hard to test all of them with UI tests.
+
+### Simplicity
+
+Most scalability issues are solved by aiming for simplicity. In case of navigation, this l
+
+
+### Navigation tree
+
+https://github.com/rlopezdiez/RLDNavigationSwift
+
+### Delegation
