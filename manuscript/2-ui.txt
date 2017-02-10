@@ -4,7 +4,7 @@ User interface is the entry point in our apps. It's what the users see and inter
 
 On macOS things are a little bit different. There's no `UIKit` but instead there's `AppKit`. Since this framework was there before iOS APIs and components are a lot more different. For example, `UIResponder` chain that is not used a lot on iOS, is commonly used there. Self-contained views on iOS, such as `UITextView`s turn into a composition of multiple views on macOS, in essence, the view with the text, and the one that handles the scrolling.
 
-For any of these forementioned platforms, we can use a tool from Xcode, Interface Builder, for building our UIs. As you might know, IB is a drag-and-drop tool that allows you to build UIs by dragging and dropping elements, setting their properties, sizes and constraints, and connecting them with your code via `@IB...` properties. XIBs and Storyboards are the files IB works with. Storyboards go one step further and allows you to define also the navigation of your app, connecting different ViewControllers and defining how the navigation should be between them.
+For any of these aforementioned platforms, we can use a tool from Xcode, Interface Builder, for building our UIs. As you might know, IB is a drag-and-drop tool that allows you to build UIs by dragging and dropping elements, setting their properties, sizes and constraints, and connecting them with your code via `@IB...` properties. XIBs and Storyboards are the files IB works with. Storyboards go one step further and allows you to define also the navigation of your app, connecting different ViewControllers and defining how the navigation should be between them.
 
 Moreover, UIs can also be built in code. Whatever you do in IB, you can do it in code! *(but not the other way around)*. You can implement everything in code using `UIKit` and lower leverl APIs, or do something hybrid, where some elements are defined in an IB file and you connect them with some elements that you have defined in code. This a very polemic topic and a usual discussion point among developers.
 
@@ -142,7 +142,45 @@ Adding up to the problem, there are so many possible scenarios regarding deep li
 
 ### Simplicity
 
-Most scalability issues are solved by aiming for simplicity. In case of navigation, this l
+Most scalability issues are solved by aiming for simplicity. In case of navigation, this will lead us to some fights with the designers in our project. It's very important to get a heads-up on the importance of simple navigations. They might think about a multi-level navigation, where all kind of transitions are possible, pushing, custom, modal, tabbar... Your project's navigation model would look like this:
+
+![An example of how an application navigation would look like with different levels of presentation](images/navigation_hierarchy.png)
+
+Each of these view controllers represents a **navigation state** in your app. As you can see, the combinations of these states can be infinite. Unless you define the scope for these combinations, the navigation can get out of control. Define the levels of navigation that you plan to support and commit to these.
+
+### Coordinators
+
+Even with the navigation simplified, it can be hard to figure out the navigation of our app. In platforms like Android, they register all the views, or `Activities` how they call it, in a central place called `Manifest`. You can register activities there with the URL that they are able to handle, and some other properties that tell the system how they should be reused. Although it sounds a good solution that we could replicate in our Xcode projects, that model works well on Android, where the navigation is mostly static. The system replaces the activity with the new one, in the same way you could do it on iOS by updating the `rootViewController` of your application `UIWindow`. Android recently introduced features to make it more dynamic, but they keep the same centralized model. Although Xcode projects don't support a navigation such a navigation model we can build one inspire on the Android one:
+
+- It should be dynamic, to benefit from the transitions that comes with `UIKit` or `AppKit`.
+- It should be able to navigate using `URLs`, so that we could easily handle deep links or content coming from notifications.
+- It should be very declarative so that any developer in the team could, at a glance, understand how the navigation is built.
+
+There's one pattern that fulfills these specs pretty well. The **coordinator pattern**. This pattern states that the navigation is built with coordinators. Coordinators know how to create the view and navigate to it from a source view. Moreover, they know about the child coordinators and can call them to change the navigation state. In other words, there's a coordinator per view and it handles the creation and the navigation.
+
+```swift
+protocol Coordinator {
+
+}
+```
+
+
+Thanks to having a representation of your navigation tree with the coordinators, we can print how the navigation looks like in your app by going through the
+
+```swift
+printTree(coordinator: coordinator) // Prints the navigation tree
+
+// Root Window
+// -- Tabbar
+// ------ Home
+// ------ Search
+// ------ Collection
+// -- Player
+```
+
+
+
+// TODO
 
 
 ### Navigation tree
