@@ -184,6 +184,6 @@ You can read more about the coordinator pattern in the following links:
 
 Coordinators need a navigation context to navigate from. It can be the source view controller *(the one the coordinator navigates from)* or it can be the view controller and other elements that allow the coordinator navigating dynamically, for example using `UIViewControllerTransitioningDelegate`
 
-{blurb, class: tip}
-The coordinator pattern doesn't solve the problem of how to handle URLs depending on the state. You can find a lot of [tools](https://cocoapods.org/?q=route) offer a routing component. You can have one of these in your apps, register different URLs and connect the actions with the coordinator pattern mentioned above. Remember, keep the tree simple, even using the coordinator pattern. That'll ease the handling logic of your routers. 
-{/blurb}
+{aside}
+The coordinator pattern doesn't solve the problem of how to handle URLs depending on the state. You can find a lot of [tools](https://cocoapods.org/?q=route) that offer a routing component. You can have one of these in your apps, register different URLs and connect the actions with the coordinator pattern mentioned above. Remember, keep the tree simple, even using the coordinator pattern. That'll ease the handling logic of your routers. 
+{/aside}
