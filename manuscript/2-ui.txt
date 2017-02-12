@@ -1,11 +1,11 @@
 # User interface
-User interface is the entry point in our apps. It's what the users see and interact with. Interfaces are composable and what users see on the screen is a composition of multiple views that are composed in armony to fit into your project brand. There are views that don't respond to actions, plain views, or views that respond to acttions, buttons. In iOS development all these elements come from `UIKit`, a system framework that uses inheritance to provide you with elements that you can use for your projects. `UIKit` is also the framework used for watchOS and tvOS applications. In this case the framework introduces some changes since the UX of these platform differs to the iOS one, but most of APIs are similar. That makes things easier to iOS developers that want jump into these platform with their experience on iOS.
+User interface is the entry point in our apps. It's what the users see and interact with. What users see on the screen is a composition of multiple views that are composed in armony to fit into your project brand. There are views that don't respond to actions, plain views, or views that respond to acttions, buttons. On iOS development all these elements come from `UIKit`, a system framework that uses inheritance to provide you with elements that you can use for your projects. `UIKit` is also the framework used for watchOS and tvOS applications. In this case the framework introduces some changes, since the UX of these platform differs to iOS, but most of APIs are similar. That makes things easier to iOS developers that want jump into these platforms with their experience on iOS.
 
-On macOS things are a little bit different. There's no `UIKit` but instead there's `AppKit`. Since this framework was there before iOS APIs and components are a lot more different. For example, `UIResponder` chain that is not used a lot on iOS, is commonly used there. Self-contained views on iOS, such as `UITextView`s turn into a composition of multiple views on macOS, in essence, the view with the text, and the one that handles the scrolling.
+On macOS things are a little bit different. There's no `UIKit` but instead there's `AppKit`. Since this framework was there before `UIKit`, API and components are a lot more different. For example, `UIResponder` chain that is not used a lot on iOS, is commonly used there. Self-contained views on iOS, such as `UITextView`s turn into a composition of multiple views on macOS, in essence, the view with the text, and the one that handles the scrolling.
 
 For any of these aforementioned platforms, we can use a tool from Xcode, Interface Builder, for building our UIs. As you might know, IB is a drag-and-drop tool that allows you to build UIs by dragging and dropping elements, setting their properties, sizes and constraints, and connecting them with your code via `@IB...` properties. XIBs and Storyboards are the files IB works with. Storyboards go one step further and allows you to define also the navigation of your app, connecting different ViewControllers and defining how the navigation should be between them.
 
-Moreover, UIs can also be built in code. Whatever you do in IB, you can do it in code! *(but not the other way around)*. You can implement everything in code using `UIKit` and lower leverl APIs, or do something hybrid, where some elements are defined in an IB file and you connect them with some elements that you have defined in code. This a very polemic topic and a usual discussion point among developers.
+Moreover, UIs can also be built in code. Whatever you do in IB, you can do it in code! *(but not the other way around)*. You can implement everything in code using `UIKit`, `AppKit` and low level APIs, or do something hybrid, where some elements are defined in an IB file and you connect them with some elements that you have defined in code. This a very polemic topic, and a usual discussion point among developers.
 
 - How do you describe your UI?
 - Do you use XIBs or Storyboards?
@@ -14,7 +14,7 @@ Any of them is better than the other. But although Apple is trying its best to a
 
 Having the source of truth in terms of UI spread across different files might eventually lead you to these kind of issues, that are sometimes hard to debug. *Why the size is not correct?*, *Why the font is not the one that I'm expecting?*. Nevertheless, having the UI in code makes it harder to understand how the view in code looks like. When you have your UI in an IB file, you can see how it looks like at a glance by just opening the file.
 
-Deciding between IB or views in code is a decision you take when you start a new project. Sometimes it comes from a personal preference. Both of them have pros and cons, and they way you design there we'll have an impact on the scalability of them. Let's dive into scalability UI-related issues that might arise, reason about them, and come up with alternatives or tips to decrease the negative impact they have in your project.
+Deciding between IB or views in code is a decision you take when you start a new project. Sometimes it comes from a personal preference. Any of them have pros and cons, and it's important to know them well to identify the scalability issues that might arise. Let's dive into these UI-related issues, reason about them, and come come up with alternatives or tips to decrease the negative impact they have in your project.
 
 ## Interface Builder (IB) files
 IB uses internally a custom xml-like representation for your UI. Whenever you modify something, it updates the internal representation to match what you see on the IB. While you can update the file manually with a text editor, it's not very human-readable. Let me ask you a question..
@@ -23,11 +23,11 @@ IB uses internally a custom xml-like representation for your UI. Whenever you mo
 
 I dare to say most times you don't. But that's fine, we trust each other, our relationship with designers, and we trust our snapshot testing suite. But what if two teams are modifying the same file in two different branches? Then you'll have a big trouble. As soon as one of you have to rebase on the other's branch, you'll have to deal with the conflicts. And you might guess, this time you have dive into that plain-text representation.
 
-The more complex the layout is, the harder it'll be to figure out the conflicts and solve them. Even if you manage to solve them, how do you make sure that the conflicts were solved correctly? You can ask designers to do eye-check, or validate the snapshot with them, so that you can use it in your snapshot testing infrastructure.
+The more complex the layout is, the harder it'll be to figure out the conflicts and solve them. Even if you manage to solve them, how do you make sure that the conflicts were solved correctly? You can ask designers for double-checking, or validate the snapshot with them, so that you can use it in your snapshot testing infrastructure.
 
-In any case, you'll need constant checks, and that slows down your team's workflow. That's not good! Let's dive into some tips and ideas to prevent these issues and in case they happen make them easier to solve.
+In any case, you'll need constant checks, and that slows down your team's productivity. That's not good! Let's go through some tips and ideas to prevent these issues and in case they happen make them easier to solve.
 
-### Simplicity
+### #1 - Make your UI simple
 The first time you create an IB file, either a XIB file or a Storyboard, you find yourself with a white canvas where you can start drawing like a painter. I drag this view there, then this button, I set some constraints, change the color of this view. Unless you control this process, you might end up with a huge complex layout, like the one shown below:
 
 {alt: "complex layout defined in an interface file"}
@@ -60,8 +60,8 @@ class PlayerMetadataView {
 ```
 {/aside}
 
-### Readability
-When vies are dragged and dropped into the interface file, they are named with their class by default: `UIView`, `UIButton`... If the UI is simple, having these names might be fine to understand which one is each of them referring to. Nevertheless, as soon as you start having more than one `UIView`, or more than one `UIButton`, you'll need some time to figure out who they are.
+### #2 - Make your UI readable
+When views are dragged into the interface file, they are named with their class by default: `UIView`, `UIButton`... If the UI is simple, having these names might be fine to understand which one is each of them referring to. Nevertheless, as soon as you start having more than one `UIView`, or more than one `UIButton`, you'll need some time to figure out who they are.
 
 **Be explicit and set the label property to your subviews**. The two images below show one example without names, and another example with names. Which one is easier to understand?
 
@@ -71,9 +71,9 @@ When vies are dragged and dropped into the interface file, they are named with t
 {alt: "a view whose subviews are named"}
 ![View interface file with the subviews with names](images/xib_with_titles.png)
 
-> Whenever you add a new element to the interface, go to the inspector properties, and assign a label that identifies what the element is doing.
+Whenever you add a new element to the interface, go to the inspector properties, and assign a label that identifies what the element is doing.
 
-### Reusability
+### #3 - Make your UI reusable
 Reusability it's another common issue when building UIs. You might end up in a situation where a similar layout is defined in different places. You should aim for reusable UIs like you do with your code. When you have your project duplicated layouts, it increases the maintainability costs, and also the inconsistency risks. At some point, designers might ask you for update one view in the app to include an extra element, and since you didn't know the layout was duplicated in other parts of the app, you forget about it. The introduced element is not consistent across the app.
 
 As a first exercise to do when you are about adding a new view to the app, make sure there isn't any other similar layout that you can reuse. If there is, you should use that one instead. If the layout is not in place, and you need to work on a new one, you should commit to make the layout reusable. **How can you make your component reusable?**
@@ -102,11 +102,11 @@ struct TrackCellViewModel {
 ```
 It might happen that two layouts that were similar at the beginning, started to differ and you ended up with a view model full of boolean properties that would conditionally define multiple states for your cell. In that case, it makes sense to consider separating the layouts. Since you don't want to duplicate part of the layout that you have already defined you can:
 
-- Use **inheritance**. You can inherit the base view and add the additional functionality that differs from the two layouts. That would violate the Liskov SOLID principle because you'll end up with a subclass that cannot be interchanged with its parent class. By subclassing you open the door to extend APIS as you need, and as the project evolves, these subclasses will most likely be extended to satisfy product needs.
+- Use **inheritance**. You can inherit the base view and add the additional functionality that differs from the two layouts. That would violate the Liskov's SOLID principle because you'll end up with a subclass that cannot be interchanged with its parent class. By subclassing you open the door to extend APIS as you need, and as the project evolves, these subclasses will most likely be extended to satisfy different product use cases.
 - Use **composition**. With composition you can abstract the reusable elements from your layout *(if there's any)*, and create a view with them. That way you can easily compose it into the two layouts, and add the extra functionality that each of them needs.
 
 {aside}
-Component-driven layouts is a trend nowadays. A lot of companies and projects are moving towards approaches where where layouts are built by composing components. Solutions are coming out for different platforms:
+Component-driven layouts is a trend nowadays. A lot of companies and projects are moving towards approaches, where layouts are built by composing components. Solutions are coming out for different platforms:
 - [**React**](https://facebook.github.io/react/) from Facebook, where components defined with Javascript and HTML.
 - [**React Native**](https://facebook.github.io/react-native/) also from Facebook, where components are defined in Javascript and are rendered as native code *(Java for Android and Objective-C for iOS)*. Companies like [Artsy](http://artsy.github.io/blog/2017/02/05/Retrospective-Swift-at-Artsy/) or [Instagram]() are moving towards this solution. We'll cover the reasons later in this book.
 - [**Hub Framework**](https://github.com/spotify/HubFramework) from Spotify where native components are composed in collections. How these components are arranged and built can be defined in a JSON file that can be sent from a backend. At Spotify they call it [Backend Driven UI](https://www.youtube.com/watch?v=ypk-72mhYBk)
@@ -114,7 +114,7 @@ Component-driven layouts is a trend nowadays. A lot of companies and projects ar
 - [**ComponentKit**](https://code.facebook.com/posts/1415586422080360/introducing-componentkit-functional-and-declarative-ui-on-ios/) also from Facebook that allows you focus on what your UI should look like, rather than on the steps necessary to build it. It's a functional approach.
 {/aside}
 
-### Declarative UIs
+## Declarative UIs
 A good alternative to IB files is defining the UI in code. A few years ago, UI written in code was pretty hard to understand. When autolayouts were introduced, the APIs to define constraints in code weren't very readable. Developers preferred to use IB instead. Fortunatelly, this has changed and Apple has introduced a lot of improvements in these APIs and nowadays, it's very easy to figure out how the UI looks like by reading the definition in code. Let's look at the example below:
 
 ```swift
@@ -135,20 +135,23 @@ Depending on third party libraries comes with a downside, maintainance. If the l
 {/aside}
 
 ## Navigation
-As you might now, on Apple platforms the navigation is not centralized. To navigate to a different view, you have to do it from the existing view, presenting, pushing... While it works for simple navigation model, it doesn't scale when the model becomes more complex. Moreover the fact that the navigation is not centralized, brings some complexity when deep links handling logic.
+On Apple platforms, navigation is done from views. One view can present or dismiss another. With that model, it's pretty easy to end up with navigation logic spread all over the app. As your project evolves and the number of views increases you'll most likely end up with a navigation tree hard to figure out. 
 
-For example, when a notification is received, or the user is trying to continue its navigation within your app using a deep link, the app could be in a state that we have to first, have a representation about, and then decide what to do based on that state. We easily end up with a component that dives into the navigation stack, and by reverse-engineering, decides how to navigate. The problem with that model is that is by any chance, anyone in the team updates the navigation stack, and forgets about updating this component, your deep link controller will most likely get broken.
-Adding up to the problem, there are so many possible scenarios regarding deep linking that it's really hard to test all of them with UI tests.
+The navigation in our apps is like a tree, where the entry point is the `AppDelegate`. Is in the app delegate where we have a `UIWindow`, and from that point we start building the different nodes that represent different navigation states. Typically, these states are represented by a view controller in the navigation hierarchy. 
 
-### Simplicity
+Having no control over how that tree is very bad. First, teams can keep extending the tree with more states, your navigation quickly becomes a very stateful component. Second, when the application needs to navigate to a particular state, represented by an URL *(that came from a notification or a deeplink)*, it's really hard to figure out what the state is, and how to navigate to the destination state.
 
-Most scalability issues are solved by aiming for simplicity. In case of navigation, this will lead us to some fights with the designers in our project. It's very important to get a heads-up on the importance of simple navigations. They might think about a multi-level navigation, where all kind of transitions are possible, pushing, custom, modal, tabbar... Your project's navigation model would look like this:
+With the following simple tips you will have more control over the navigation and prevent the logic to be a mess, spread across your view controllers.
+
+### #1 - Make your navigation simple
+
+Most scalability issues are solved by aiming for simplicity. In case of navigation, this will lead us to some fights with the designers in our project. It's very important to get a heads-up on the importance of a simple navigation. They might think about a multi-level navigation, where all kind of transitions are possible, pushing, custom, modal, tabbar... Your project's navigation model would look like this:
 
 ![An example of how an application navigation would look like with different levels of presentation](images/navigation_hierarchy.png)
 
-Each of these view controllers represents a **navigation state** in your app. As you can see, the combinations of these states can be infinite. Unless you define the scope for these combinations, the navigation can get out of control. Define the levels of navigation that you plan to support and commit to these.
+Each of these view controllers represents a navigation state in your app. As you can see, the combinations of these states can be infinite. Unless you define the scope for these combinations, the navigation can get out of control. **Define the levels of navigation that you plan to support and commit to these.**
 
-### Coordinators
+### #2 - Isolate navigation logic
 Even with the navigation simplified, it can be hard to figure out the navigation of our app. In platforms like Android, they register all the views, or `Activities` how they call it, in a central place called `Manifest`. You can register activities there with the URL that they are able to handle, and some other properties that tell the system how they should be reused. Although it sounds a good solution that we could replicate in our Xcode projects, that model works well on Android, where the navigation is mostly static. The system replaces the activity with the new one, in the same way you could do it on iOS by updating the `rootViewController` of your application `UIWindow`. Android recently introduced features to make it more dynamic, but they keep the same centralized model. 
 
 There's a pattern, introduced by [Soroush Khanlou](http://khanlou.com/2015/01/the-coordinator/) for iOS called [**Coordinator Pattern**](http://khanlou.com/2015/01/the-coordinator/). The pattern is inspired in [the application controller pattern](http://martinfowler.com/eaaCatalog/applicationController.html). The pattern states that the navigation in the app should be managed by classes called coordinators. These coordinators are responsible for *initializing* and *presenting* view controllers, and responding to actions that imply navigation by using other coordinators. A coordinator would look like:
@@ -159,9 +162,9 @@ protocol Coordinator: class {
   func start()
 }
 ``` 
-Coordinators have a reference to their children, so that they are not released from memory. Coordinators can delegate to their parent coordinator by using the delengate pattern between them. When the method `start` gets called, the view to be presented is initialized and presenter in the context the coordinator is given.
+Coordinators have a reference to their children, so that they are not released from memory. Coordinators can delegate to their parent coordinator by using the delengate pattern between them. When the method `start` gets called, the view to be presented is initialized and presented in the context the coordinator is given.
 
-The benefits of the pattern are perfectly described by Soroush:
+The benefits of the pattern are greatly described by Soroush:
 
 > The benefits to extracting the flow into a coordinator are myriad. View controllers now can focus on their goal of binding a model to a view. The can be reused more easily, such as in extensions or unbundled apps, without having complex conditionals to manage different contexts. A/B testing is as simple as creating a different coordinator object and using that to start the process. Flow logic now has a home, and things that have a home feel real nice.
 
