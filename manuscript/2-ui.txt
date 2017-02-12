@@ -38,8 +38,7 @@ The first time you create an IB file, either a XIB file or a Storyboard, you fin
 
 In politics, sociology, and economics, **divide and conquer** refers to a strategy to gain or maintain power. By dividing and conquering in IB files we'll gain and maintain scalability. Define your UI to be component driven, where larger views are built by composing smaller UI pieces. Instead of having a single IB that holds all the subviews and possible use cases, split it up in different IB files.
 
-{class: aside}
-{blurb}
+{blurb, class: information}
 For example, let's say that you have a music player view, defined in a XIB file. The view controller contains the metadata, navigation, and control subviews. By adding all these sub-elements to the XIB file, you increase the complexity, and limit the reusability of these sub-elements. *What if you wanted to use the controls subview with another view controller?* *What if you wanted to reuse the navigation?* Instead of grouping all of them in the same interface file, create the following components:
 
 - `Navigation{.swift,.xib}`
@@ -76,14 +75,6 @@ When vies are dragged and dropped into the interface file, they are named with t
 {alt: "a view whose subviews are named"}
 ![View interface file with the subviews with names](images/xib_with_titles.png)
 
-{class: tip}
-{blurb}
-Remember, you can easily change the label in the *Identity Inspector* as shown in the image below:
-
-{alt: "the identity inspector view with the field to update the label"}
-![Identity inspector with the field to update the view label](images/identity_inspector_label.png)
-{/blurb}
-
 > Whenever you add a new element to the interface, go to the inspector properties, and assign a label that identifies what the element is doing.
 
 ### Reusability
@@ -119,8 +110,7 @@ It might happen that two layouts that were similar at the beginning, started to 
 - Use **inheritance**. You can inherit the base view and add the additional functionality that differs from the two layouts. That would violate the Liskov SOLID principle because you'll end up with a subclass that cannot be interchanged with its parent class. By subclassing you open the door to extend APIS as you need, and as the project evolves, these subclasses will most likely be extended to satisfy product needs.
 - Use **composition**. With composition you can abstract the reusable elements from your layout *(if there's any)*, and create a view with them. That way you can easily compose it into the two layouts, and add the extra functionality that each of them needs.
 
-{class: aside}
-{blurb}
+{blurb, class: information}
 Component-driven layouts is a trend nowadays. A lot of companies and projects are moving towards approaches where where layouts are built by composing components. Solutions are coming out for different platforms:
 - [**React**](https://facebook.github.io/react/) from Facebook, where components defined with Javascript and HTML.
 - [**React Native**](https://facebook.github.io/react-native/) also from Facebook, where components are defined in Javascript and are rendered as native code *(Java for Android and Objective-C for iOS)*. Companies like [Artsy](http://artsy.github.io/blog/2017/02/05/Retrospective-Swift-at-Artsy/) or [Instagram]() are moving towards this solution. We'll cover the reasons later in this book.
@@ -134,10 +124,10 @@ Component-driven layouts is a trend nowadays. A lot of companies and projects ar
 A good alternative to IB files is defining the UI in code. A few years ago, UI written in code was pretty hard to understand. When autolayouts were introduced, the APIs to define constraints in code weren't very readable. Developers preferred to use IB instead. Fortunatelly, this has changed and Apple has introduced a lot of improvements in these APIs and nowadays, it's very easy to figure out how the UI looks like by reading the definition in code. Let's look at the example below:
 
 ```swift
-button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
-button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15).isActive = true
-button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
-button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15)
+button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15)
+button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15)
+button.heightAnchor.constraint(equalToConstant: 44)
 ```
 
 Could you imagine how the view will look like? Easy, right? If you design your application views to be no more than 5 views, the layouting code shouldn't be that complex. Moreover, by doing everything in code, you make sure there's a single source of truth regarding the UI. You can, not only position the elements, but define how they animate, how they react to changes, or how your app navigates between different views.
@@ -146,8 +136,7 @@ Conflicts are easier to solve with declarative UIs since there isn't an internal
 
 If you don't like the APIs that were given by `UIKit` or `AppKit` you can try any of the libraries mentioned before, they provide you with a custom syntax for defining your app. There are some others out there like [MarkupKit](https://github.com/gk-brown/MarkupKit) with which you can define the user interface in a XML file or [LeeGo](https://github.com/wangshengjia/LeeGo) where you can describe your whole UI in small pieces of Lego style's bricks.
 
-{class: warning}
-{blurb}
+{blurb, class: tip}
 Depending on third party libraries comes with a downside, maintainance. If the library introduces breaking changes, or the language does, your project will get stuck in a particular version and you'll need to spend some time to bump the dependency version.
 {/blurb}
 
@@ -170,7 +159,7 @@ Each of these view controllers represents a **navigation state** in your app. As
 
 Even with the navigation simplified, it can be hard to figure out the navigation of our app. In platforms like Android, they register all the views, or `Activities` how they call it, in a central place called `Manifest`. You can register activities there with the URL that they are able to handle, and some other properties that tell the system how they should be reused. Although it sounds a good solution that we could replicate in our Xcode projects, that model works well on Android, where the navigation is mostly static. The system replaces the activity with the new one, in the same way you could do it on iOS by updating the `rootViewController` of your application `UIWindow`. Android recently introduced features to make it more dynamic, but they keep the same centralized model. 
 
-There's a pattern, introduced by [Soroush Khanlou](http://khanlou.com/2015/01/the-coordinator/) for iOS called [**Coordinator Patter**](http://khanlou.com/2015/01/the-coordinator/). The pattern is inspired in [the application controller pattern](http://martinfowler.com/eaaCatalog/applicationController.html). The patterns states that the navigation in the app should be managed by classes called coordinators. These coordinators are responsible for *initializing* and *presenting* view controllers, and responding to actions that imply navigation by using other coordinators. A coordinator would look like:
+There's a pattern, introduced by [Soroush Khanlou](http://khanlou.com/2015/01/the-coordinator/) for iOS called [**Coordinator Pattern**](http://khanlou.com/2015/01/the-coordinator/). The pattern is inspired in [the application controller pattern](http://martinfowler.com/eaaCatalog/applicationController.html). The pattern states that the navigation in the app should be managed by classes called coordinators. These coordinators are responsible for *initializing* and *presenting* view controllers, and responding to actions that imply navigation by using other coordinators. A coordinator would look like:
 
 ```swift
 protocol Coordinator: class {
@@ -184,10 +173,7 @@ The benefits of the pattern are perfectly described by Soroush:
 
 > The benefits to extracting the flow into a coordinator are myriad. View controllers now can focus on their goal of binding a model to a view. The can be reused more easily, such as in extensions or unbundled apps, without having complex conditionals to manage different contexts. A/B testing is as simple as creating a different coordinator object and using that to start the process. Flow logic now has a home, and things that have a home feel real nice.
 
-{class: aside}
-{blurb}
-If you use [VIPER](https://www.objc.io/issues/13-architecture/viper/) in your apps, the coordinator would be the equivalent to the `Router`.
-{/blurb}
+You can understand how the navigation is built by looking at the coordinators in your app. As an idea, you could extend the coordinator to have a method that prints the tree of coordinators that is currently in memory. That way you could get a picture of what's the current navigation state.
 
 You can read more about the coordinator pattern in the following links:
 
@@ -198,10 +184,6 @@ You can read more about the coordinator pattern in the following links:
 
 Coordinators need a navigation context to navigate from. It can be the source view controller *(the one the coordinator navigates from)* or it can be the view controller and other elements that allow the coordinator navigating dynamically, for example using `UIViewControllerTransitioningDelegate`
 
-- It should be able to navigate using `URLs`, so that we could easily handle deep links or content coming from notifications.
-
-
-{class: aside}
-{blurb}
-You can find third party libraries like [RLDNavigationSwift](https://github.com/rlopezdiez/RLDNavigationSwift). It is a set of Swift classes which allow you to decouple navigation from view controllers, using navigation command objects to define the possible navigation flows of your app.
+{blurb, class: tip}
+The coordinator pattern doesn't solve the problem of how to handle URLs depending on the state. You can find a lot of [tools](https://cocoapods.org/?q=route) offer a routing component. You can have one of these in your apps, register different URLs and connect the actions with the coordinator pattern mentioned above. Remember, keep the tree simple, even using the coordinator pattern. That'll ease the handling logic of your routers. 
 {/blurb}

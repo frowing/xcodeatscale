@@ -1,6 +1,5 @@
 # Markua
 > : Block
-A> : Aside
 B> : Blurb
 D> : Discussion
 E> : Error
@@ -8,7 +7,12 @@ I> : Information
 T> : Tip
 W> : Warning
 
-{class: warning}
-{blurb}
+discussion
+error
+information
+tip
+warning
+
+{blurb: class: warning}
 
 {/blurb}
