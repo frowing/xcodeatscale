@@ -70,10 +70,10 @@ When vies are dragged and dropped into the interface file, they are named with t
 
 **Be explicit and set the label property to your subviews**. The two images below show one example without names, and another example with names. Which one is easier to understand?
 
-{fullbleed: true, alt: "a view whose subviews are not named"}
+{alt: "a view whose subviews are not named"}
 ![View interface file with the subviews without names](images/xib_without_titles.png)
 
-{fullbleed: true, alt: "a view whose subviews are named"}
+{alt: "a view whose subviews are named"}
 ![View interface file with the subviews with names](images/xib_with_titles.png)
 
 {class: tip}
@@ -86,7 +86,7 @@ Remember, you can easily change the label in the *Identity Inspector* as shown i
 
 > Whenever you add a new element to the interface, go to the inspector properties, and assign a label that identifies what the element is doing.
 
-## Reusability
+### Reusability
 
 Reusability it's another common issue when building UIs. You might end up in a situation where a similar layout is defined in different places. You should aim for reusable UIs like you do with your code. When you have your project duplicated layouts, it increases the maintainability costs, and also the inconsistency risks. At some point, designers might ask you for update one view in the app to include an extra element, and since you didn't know the layout was duplicated in other parts of the app, you forget about it. The introduced element is not consistent across the app.
 
@@ -131,7 +131,25 @@ Component-driven layouts is a trend nowadays. A lot of companies and projects ar
 
 ### Declarative UIs
 
+A good alternative to IB files is defining the UI in code. A few years ago, UI written in code was pretty hard to understand. When autolayouts were introduced, the APIs to define constraints in code weren't very readable. Developers preferred to use IB instead. Fortunatelly, this has changed and Apple has introduced a lot of improvements in these APIs and nowadays, it's very easy to figure out how the UI looks like by reading the definition in code. Let's look at the example below:
 
+```swift
+button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15).isActive = true
+button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
+button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+```
+
+Could you imagine how the view will look like? Easy, right? If you design your application views to be no more than 5 views, the layouting code shouldn't be that complex. Moreover, by doing everything in code, you make sure there's a single source of truth regarding the UI. You can, not only position the elements, but define how they animate, how they react to changes, or how your app navigates between different views.
+
+Conflicts are easier to solve with declarative UIs since there isn't an internal representation other than the code that you write and that people in your team understand. It's your language!
+
+If you don't like the APIs that were given by `UIKit` or `AppKit` you can try any of the libraries mentioned before, they provide you with a custom syntax for defining your app. There are some others out there like [MarkupKit](https://github.com/gk-brown/MarkupKit) with which you can define the user interface in a XML file or [LeeGo](https://github.com/wangshengjia/LeeGo) where you can describe your whole UI in small pieces of Lego style's bricks.
+
+{class: warning}
+{blurb}
+Depending on third party libraries comes with a downside, maintainance. If the library introduces breaking changes, or the language does, your project will get stuck in a particular version and you'll need to spend some time to bump the dependency version.
+{/blurb}
 
 ## Navigation
 
@@ -150,41 +168,40 @@ Each of these view controllers represents a **navigation state** in your app. As
 
 ### Coordinators
 
-Even with the navigation simplified, it can be hard to figure out the navigation of our app. In platforms like Android, they register all the views, or `Activities` how they call it, in a central place called `Manifest`. You can register activities there with the URL that they are able to handle, and some other properties that tell the system how they should be reused. Although it sounds a good solution that we could replicate in our Xcode projects, that model works well on Android, where the navigation is mostly static. The system replaces the activity with the new one, in the same way you could do it on iOS by updating the `rootViewController` of your application `UIWindow`. Android recently introduced features to make it more dynamic, but they keep the same centralized model. Although Xcode projects don't support a navigation such a navigation model we can build one inspire on the Android one:
+Even with the navigation simplified, it can be hard to figure out the navigation of our app. In platforms like Android, they register all the views, or `Activities` how they call it, in a central place called `Manifest`. You can register activities there with the URL that they are able to handle, and some other properties that tell the system how they should be reused. Although it sounds a good solution that we could replicate in our Xcode projects, that model works well on Android, where the navigation is mostly static. The system replaces the activity with the new one, in the same way you could do it on iOS by updating the `rootViewController` of your application `UIWindow`. Android recently introduced features to make it more dynamic, but they keep the same centralized model. 
 
-- It should be dynamic, to benefit from the transitions that comes with `UIKit` or `AppKit`.
-- It should be able to navigate using `URLs`, so that we could easily handle deep links or content coming from notifications.
-- It should be very declarative so that any developer in the team could, at a glance, understand how the navigation is built.
-
-There's one pattern that fulfills these specs pretty well. The **coordinator pattern**. This pattern states that the navigation is built with coordinators. Coordinators know how to create the view and navigate to it from a source view. Moreover, they know about the child coordinators and can call them to change the navigation state. In other words, there's a coordinator per view and it handles the creation and the navigation.
+There's a pattern, introduced by [Soroush Khanlou](http://khanlou.com/2015/01/the-coordinator/) for iOS called [**Coordinator Patter**](http://khanlou.com/2015/01/the-coordinator/). The pattern is inspired in [the application controller pattern](http://martinfowler.com/eaaCatalog/applicationController.html). The patterns states that the navigation in the app should be managed by classes called coordinators. These coordinators are responsible for *initializing* and *presenting* view controllers, and responding to actions that imply navigation by using other coordinators. A coordinator would look like:
 
 ```swift
-protocol Coordinator {
-
+protocol Coordinator: class {
+  var childCoordinators: [Coordinator] { get }
+  func start()
 }
-```
+``` 
+Coordinators have a reference to their children, so that they are not released from memory. Coordinators can delegate to their parent coordinator by using the delengate pattern between them. When the method `start` gets called, the view to be presented is initialized and presenter in the context the coordinator is given.
+
+The benefits of the pattern are perfectly described by Soroush:
+
+> The benefits to extracting the flow into a coordinator are myriad. View controllers now can focus on their goal of binding a model to a view. The can be reused more easily, such as in extensions or unbundled apps, without having complex conditionals to manage different contexts. A/B testing is as simple as creating a different coordinator object and using that to start the process. Flow logic now has a home, and things that have a home feel real nice.
+
+{class: aside}
+{blurb}
+If you use [VIPER](https://www.objc.io/issues/13-architecture/viper/) in your apps, the coordinator would be the equivalent to the `Router`.
+{/blurb}
+
+You can read more about the coordinator pattern in the following links:
+
+- [Coordinators Redux](http://khanlou.com/2015/10/coordinators-redux/)
+- [Navigation Coordinators](http://irace.me/navigation-coordinators)
+- [Swift Coordinator](http://skyefreeman.io/programming/2016/02/23/playing_with_app_coordinators.html)
+- [Protocol oriented app coordinator](http://mattwyskiel.github.io/posts/2016/03/20/protocol-oriented-app-coordinator-swift.html)
+
+Coordinators need a navigation context to navigate from. It can be the source view controller *(the one the coordinator navigates from)* or it can be the view controller and other elements that allow the coordinator navigating dynamically, for example using `UIViewControllerTransitioningDelegate`
+
+- It should be able to navigate using `URLs`, so that we could easily handle deep links or content coming from notifications.
 
 
-Thanks to having a representation of your navigation tree with the coordinators, we can print how the navigation looks like in your app by going through the
-
-```swift
-printTree(coordinator: coordinator) // Prints the navigation tree
-
-// Root Window
-// -- Tabbar
-// ------ Home
-// ------ Search
-// ------ Collection
-// -- Player
-```
-
-
-
-// TODO
-
-
-### Navigation tree
-
-https://github.com/rlopezdiez/RLDNavigationSwift
-
-### Delegation
+{class: aside}
+{blurb}
+You can find third party libraries like [RLDNavigationSwift](https://github.com/rlopezdiez/RLDNavigationSwift). It is a set of Swift classes which allow you to decouple navigation from view controllers, using navigation command objects to define the possible navigation flows of your app.
+{/blurb}
