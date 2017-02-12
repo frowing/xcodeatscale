@@ -38,7 +38,7 @@ The first time you create an IB file, either a XIB file or a Storyboard, you fin
 
 In politics, sociology, and economics, **divide and conquer** refers to a strategy to gain or maintain power. By dividing and conquering in IB files we'll gain and maintain scalability. Define your UI to be component driven, where larger views are built by composing smaller UI pieces. Instead of having a single IB that holds all the subviews and possible use cases, split it up in different IB files.
 
-{blurb, class: information}
+{aside}
 For example, let's say that you have a music player view, defined in a XIB file. The view controller contains the metadata, navigation, and control subviews. By adding all these sub-elements to the XIB file, you increase the complexity, and limit the reusability of these sub-elements. *What if you wanted to use the controls subview with another view controller?* *What if you wanted to reuse the navigation?* Instead of grouping all of them in the same interface file, create the following components:
 
 - `Navigation{.swift,.xib}`
@@ -61,7 +61,7 @@ class PlayerMetadataView {
   }
 }
 ```
-{/blurb}
+{/aside}
 
 ### Readability
 
@@ -110,14 +110,14 @@ It might happen that two layouts that were similar at the beginning, started to 
 - Use **inheritance**. You can inherit the base view and add the additional functionality that differs from the two layouts. That would violate the Liskov SOLID principle because you'll end up with a subclass that cannot be interchanged with its parent class. By subclassing you open the door to extend APIS as you need, and as the project evolves, these subclasses will most likely be extended to satisfy product needs.
 - Use **composition**. With composition you can abstract the reusable elements from your layout *(if there's any)*, and create a view with them. That way you can easily compose it into the two layouts, and add the extra functionality that each of them needs.
 
-{blurb, class: information}
+{aside}
 Component-driven layouts is a trend nowadays. A lot of companies and projects are moving towards approaches where where layouts are built by composing components. Solutions are coming out for different platforms:
 - [**React**](https://facebook.github.io/react/) from Facebook, where components defined with Javascript and HTML.
 - [**React Native**](https://facebook.github.io/react-native/) also from Facebook, where components are defined in Javascript and are rendered as native code *(Java for Android and Objective-C for iOS)*. Companies like [Artsy](http://artsy.github.io/blog/2017/02/05/Retrospective-Swift-at-Artsy/) or [Instagram]() are moving towards this solution. We'll cover the reasons later in this book.
 - [**Hub Framework**](https://github.com/spotify/HubFramework) from Spotify where native components are composed in collections. How these components are arranged and built can be defined in a JSON file that can be sent from a backend. At Spotify they call it [Backend Driven UI](https://www.youtube.com/watch?v=ypk-72mhYBk)
 - [**IGListKit**](https://github.com/Instagram/IGListKit) from Instagram that provides an abstraction layer on top of `UICollectionView`.
 - [**ComponentKit**](https://code.facebook.com/posts/1415586422080360/introducing-componentkit-functional-and-declarative-ui-on-ios/) also from Facebook that allows you focus on what your UI should look like, rather than on the steps necessary to build it. It's a functional approach.
-{/blurb}
+{/aside}
 
 ### Declarative UIs
 
@@ -136,9 +136,9 @@ Conflicts are easier to solve with declarative UIs since there isn't an internal
 
 If you don't like the APIs that were given by `UIKit` or `AppKit` you can try any of the libraries mentioned before, they provide you with a custom syntax for defining your app. There are some others out there like [MarkupKit](https://github.com/gk-brown/MarkupKit) with which you can define the user interface in a XML file or [LeeGo](https://github.com/wangshengjia/LeeGo) where you can describe your whole UI in small pieces of Lego style's bricks.
 
-{blurb, class: tip}
+{aside, class: tip}
 Depending on third party libraries comes with a downside, maintainance. If the library introduces breaking changes, or the language does, your project will get stuck in a particular version and you'll need to spend some time to bump the dependency version.
-{/blurb}
+{/aside}
 
 ## Navigation
 
