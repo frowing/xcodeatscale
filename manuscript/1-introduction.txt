@@ -1,6 +1,6 @@
 # Introduction
 
-Nowadays, most of Swift projects that we start, we kick off them with a single target that contains all the source code of our application. Your next startup big project, your free time pet project, your company's mobile application. We start by building something simple, self-contained that allows us validate the idea and keep iterating and growing.
+Nowadays, most of Xcode projects that we start, we kick off them with a single target that contains all the source code of our application. Your next startup big project, your free time pet project, your company's mobile application. We start by building something simple, self-contained that allows us validate the idea and keep iterating and growing.
 
 First days, weeks and months working on these projects are a pleasure, more engineers speed up development, issues are quickly tackled and the project seems to evolve according to the business needs. Along the way you take a lot of decisions, like using reactive and which library for that, or if Core Data is the storage you want go with... Some of these descissions might not seem very important when they are taken but the reality is that they might end up being. Decisions are taken based on multiple variables, the product needs, the team motivation, some technical limitations... and that's not an easy task. Moreover, these variables might change from one week to the other, and you should be able to identify them and take decisions to allow your project and team scale well.
 
